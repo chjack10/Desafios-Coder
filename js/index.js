@@ -26,6 +26,20 @@ const getAmount = () => {
   return amount;
 }
 
+const getProductId = () => {
+
+  while(repeat) {
+    const id = parseInt(prompt('Ingresá el código del producto que querés eliminar.').trim());
+
+    if (id > 0 && id < 7) {
+      return id;
+
+    } else {
+      alert('Ingresá un código de item válido.');
+    }
+  }
+}
+
 // Main
 
 alert("Vamos a simular un carrito y una factura");
@@ -67,6 +81,10 @@ do {
 
     case 7:
       cart.printItems();
+      break;
+
+    case 8:
+      cart.removeItem( getProductId() );
       break;
 
     default:

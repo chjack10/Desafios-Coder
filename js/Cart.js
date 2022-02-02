@@ -16,6 +16,22 @@ export default class Cart {
     this.subTotal += price * amount;
   }
 
+  removeItem(id) {
+    const itemIndex = this.items.findIndex(product => product.id === id);
+
+    if(itemIndex === -1) {
+      alert('No tenés ese producto en el carrito');
+
+    } else { 
+      alert(`${this.items[itemIndex].name} eliminado del carrito. Podés ver lo que tenés en el carrito en consola.`);
+
+      this.subTotal -= this.items[itemIndex].price * this.items[itemIndex].amount;
+      
+      this.items.splice(itemIndex, 1);
+      this.printItems();
+    }
+  }
+
   printItems() {
     this.items.length === 0
       ? console.warn("No tenes productos en el carrito")
