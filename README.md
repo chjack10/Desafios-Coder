@@ -1,6 +1,6 @@
-# Desafío: Incorporar Arrays
+# Primera entrega del Proyecto Final
  
-## EXPIRA EL MARTES 01/02/2022 23:59HS
+## PREENTREGA - EXPIRA EL JUEVES 03/02/2022 23:59HS
 
 ### Simulador interactivo
 
