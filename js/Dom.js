@@ -12,7 +12,7 @@ const domInitialize = () => {
     $toastTriggers.forEach( (el, id) => {
         
         el.setAttribute('data-id', id + 1);
-        
+
         el.addEventListener('click', () => {
             const toast = new bootstrap.Toast($productAddToast);
             
@@ -45,17 +45,24 @@ const addCartEventListeners = () => {
             refreshCartDisplay();
         };
     });
+
+    document.querySelector('.resetCart').onclick = () => {
+        cart.reset(); 
+        refreshCartDisplay();
+    }
 }
 
 const refreshCartDisplay = () => {
     const $cart = document.querySelector('.cart');
     const $cartNotification = document.querySelector('#cartNotification');
     const $checkoutBtn = document.querySelector('.checkoutBtn');
+    const $resetCart = document.querySelector('.resetCart');
     const $subTotal = document.querySelector('.subTotal');
 
     if (cart.items.length === 0 ) {
         $cartNotification?.classList.add('d-none');
-        $checkoutBtn?.setAttribute('disabled', '');
+        $checkoutBtn?.classList.add('d-none');
+        $resetCart?.classList.add('d-none');
         
         $cart.innerHTML = (`
         <li class="row justify-content-center defaultMessage">
@@ -67,7 +74,9 @@ const refreshCartDisplay = () => {
         
     } else {
         $cartNotification?.classList.remove('d-none');
-        $checkoutBtn?.removeAttribute('disabled');
+        $cartNotification.innerHTML = `${cart.items.length}`;
+        $checkoutBtn?.classList.remove('d-none');
+        $resetCart?.classList.remove('d-none');
         
         $cart.innerHTML = '';
 
