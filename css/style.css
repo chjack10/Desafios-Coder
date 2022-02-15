@@ -10,3 +10,15 @@ body {
     font-size: 16px;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+
+.card {
+    width: 20rem;
+}
+
+.quantity {
+    height: 30px;
+    width: 50px;
+    border-radius: 5px;
+    padding: 0;
+    text-align: center;   
+}

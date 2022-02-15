@@ -1,40 +1,52 @@
 export default class Cart {
   
   constructor() {
-    this.items = [];
-    this.subTotal = 0;
+    this.items = JSON.parse(localStorage.getItem('cart')) || [];
   }
-
+  
   addItem(item) {
-    const { id, price, amount } = item;
-    const itemIndex = this.items.findIndex(product => product.id === id);
+    const itemIndex = this.items.findIndex(product => product.id == item.id);
 
-    itemIndex === -1
-    ? this.items.push(item)
-    : this.items[itemIndex].amount += amount;
+    if ( itemIndex == -1 ) {
+      this.items.push(item);
 
-    this.subTotal += price * amount;
+    } else {
+      this.items[itemIndex].quantity += item.quantity;
+    }
+    
+    localStorage.setItem('cart', JSON.stringify(this.items));
   }
 
   removeItem(id) {
-    const itemIndex = this.items.findIndex(product => product.id === id);
+    const itemIndex = this.items.findIndex(product => product.id == id);
+  
+    this.items.splice(itemIndex, 1);
+    localStorage.setItem('cart', JSON.stringify(this.items));
+  }
 
-    if(itemIndex === -1) {
-      alert('No tenés ese producto en el carrito');
+  updateItemQuantity(id, quantity) {
+    const itemIndex = this.items.findIndex(product => product.id == id);
+  
+    this.items[itemIndex].quantity = quantity;
+    localStorage.setItem('cart', JSON.stringify(this.items));
+  }
 
-    } else { 
-      alert(`${this.items[itemIndex].name} eliminado del carrito. Podés ver lo que tenés en el carrito en consola.`);
-
-      this.subTotal -= this.items[itemIndex].price * this.items[itemIndex].amount;
-      
-      this.items.splice(itemIndex, 1);
-      this.printItems();
+  reset() {
+    if (confirm('Estas seguro que querés vaciar el carrito?')) { 
+      localStorage.clear();
+      this.items = [];
     }
   }
 
-  printItems() {
-    this.items.length === 0
-      ? console.warn("No tenes productos en el carrito")
-      : console.log('En el carrito:', ...this.items);
+  getSubTotal() {
+    return parseFloat( (this.items.reduce((acc, item) => item.quantity * item.price + acc , 0)).toFixed(2) );
+  }
+
+  getIva() {
+    return parseFloat( (this.getSubTotal() * 0.21).toFixed(2) );
+  }
+
+  getTotal() {
+    return parseFloat( (this.getIva() + this.getSubTotal()).toFixed(2) );
   }
 }
