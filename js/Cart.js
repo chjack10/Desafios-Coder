@@ -7,12 +7,16 @@ export default class Cart {
   addItem(item) {
     const itemIndex = this.items.findIndex(product => product.id == item.id);
 
-    if ( itemIndex == -1 ) {
-      this.items.push(item);
+    itemIndex == -1
+    ? this.items.push(item)
+    : this.items[itemIndex].quantity += item.quantity; 
 
-    } else {
-      this.items[itemIndex].quantity += item.quantity;
-    }
+    // if ( itemIndex == -1 ) {
+    //   this.items.push(item);
+
+    // } else {
+    //   this.items[itemIndex].quantity += item.quantity;
+    // }
     
     localStorage.setItem('cart', JSON.stringify(this.items));
   }
@@ -39,7 +43,11 @@ export default class Cart {
   }
 
   getSubTotal() {
-    return parseFloat( (this.items.reduce((acc, item) => item.quantity * item.price + acc , 0)).toFixed(2) );
+    // return parseFloat( (this.items.reduce((acc, item) => item.quantity * item.price + acc , 0)).toFixed(2) );
+    const summatory = (...args) => args.reduce((acc, current) => acc += current);
+    const values = this.items.map(item => item.price * item.quantity);
+
+    return parseFloat( summatory(...values).toFixed(2) );
   }
 
   getIva() {
