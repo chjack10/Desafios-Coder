@@ -4,21 +4,53 @@ import Cart from './Cart.js';
 
 (function () {
     'use strict'
+    let timerInterval;
+    const processPayment = () => {
+    
+        Swal.fire({
+            title: 'Procesando el pago...',
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: () => {
+              Swal.showLoading()
+            },
+            willClose: () => {
+              clearInterval(timerInterval)
+            }
+          }).then((result) => {
+            if (result.dismiss === Swal.DismissReason.timer) {
+              Swal.fire({
+                icon: 'success',
+                title: 'El pago fué realizado correctamente.',
+                text: 'Que lo disfrutes!!!',
+                showConfirmButton: false,
+                timer: 3500
+                }).then( () => {
+                    localStorage.removeItem('cart');
+                    location.href = 'index.html';
+                })
+            }
+          });
+    };
 
     // Fetch all the forms we want to apply custom Bootstrap validation styles to
     const forms = document.querySelectorAll('.needs-validation')
 
-    // Loop over them and prevent submission
+    // Loop over them and prevent submission. Once all fields were validated, call swal.
     Array.prototype.slice.call(forms)
         .forEach(function (form) {
             form.addEventListener('submit', function (event) {
                 if (!form.checkValidity()) {
                     event.preventDefault()
                     event.stopPropagation()
+
+                } else {
+                    event.preventDefault()
+                    processPayment()
                 }
 
-                form.classList.add('was-validated')
-            }, false)
+                form.classList.add('was-validated')                
+            }, false) 
         })
 })();
 
@@ -29,6 +61,8 @@ import Cart from './Cart.js';
 ( () => {
     const cart = new Cart();
     const $checkOutCart = document.querySelector('#checkoutCart');
+    const $paymentForm = document.querySelector('#paymentForm');
+    let timerInterval;
 
     // APPEND BASE TEMPLATE
 
@@ -77,5 +111,38 @@ import Cart from './Cart.js';
     </li>
 
     `);
+
+
+
+
+    // $paymentForm.addEventListener('submit', (e) => {
+    //     e.preventDefault();
+
+    //     Swal.fire({
+    //         title: 'Procesando el pago...',
+    //         timer: 2000,
+    //         timerProgressBar: true,
+    //         didOpen: () => {
+    //           Swal.showLoading()
+    //         },
+    //         willClose: () => {
+    //           clearInterval(timerInterval)
+    //         }
+    //       }).then((result) => {
+    //         if (result.dismiss === Swal.DismissReason.timer) {
+    //           Swal.fire({
+    //             icon: 'success',
+    //             title: 'El pago fué realizado correctamente.',
+    //             text: 'Que lo disfrutes!!!',
+    //             showConfirmButton: false,
+    //             timer: 3500
+    //             }).then( () => {
+    //                 // localStorage.removeItem('cart');
+    //                 // location.href = 'index.html';
+    //             })
+    //         }
+    //       });
+
+    // });
 
 }) (); // invoke immediately

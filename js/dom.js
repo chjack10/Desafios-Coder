@@ -7,19 +7,27 @@ const cart = new Cart();
 
 const domInitialize = () => {
     const $toastTriggers = document.querySelectorAll('.toastTrigger');
-    const $productAddToast = document.querySelector('.toast');
     
     $toastTriggers.forEach( (el, id) => {
         
         el.setAttribute('data-id', id + 1);
 
-        el.addEventListener('click', () => {
-            const toast = new bootstrap.Toast($productAddToast);
-            
+        el.addEventListener('click', () => {            
             cart.addItem(getItem( el.getAttribute('data-id') ));
             refreshCartDisplay();
-        
-            toast.show();
+
+            Toastify({
+                text: "Producto añadido al carrito",
+                duration: 3000,
+                className: "info",
+                stopOnFocus: false,
+                position: "center",
+                gravity: "bottom",
+                style: {
+                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                }
+                }).showToast();
+
         });
     });
 
@@ -46,10 +54,7 @@ const addCartEventListeners = () => {
         };
     });
 
-    document.querySelector('.resetCart').onclick = () => {
-        cart.reset(); 
-        refreshCartDisplay();
-    }
+    document.querySelector('.resetCart').onclick = () => cart.reset(refreshCartDisplay);
 }
 
 const refreshCartDisplay = () => {

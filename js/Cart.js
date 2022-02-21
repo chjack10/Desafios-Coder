@@ -31,11 +31,21 @@ export default class Cart {
     localStorage.setItem('cart', JSON.stringify(this.items));
   }
 
-  reset() {
-    if (confirm('Estas seguro que querés vaciar el carrito?')) { 
-      localStorage.clear();
-      this.items = [];
-    }
+  reset(refreshCartDisplay) {
+    Swal.fire({
+      title: 'Estás seguro que querés vaciar el carrito?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem('cart');
+        this.items = [];
+        refreshCartDisplay();
+      }
+    });
   }
 
   getSubTotal() {

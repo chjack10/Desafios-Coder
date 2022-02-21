@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="./css/login.css" />
+  <title>Buffet - Login</title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="logo"> <img src="img/checkoutLogo.png" alt="Buffet-image"> </div>
+    <div class="text-center mt-4 name">Buffet Universitario</div>
+
+    <form class="p-3 mt-3" id="loginForm">
+      <div class="form-field d-flex align-items-center">
+        <span class="far fa-user"></span>
+        <input type="text" class="form-control" name="userName" autofocus id="userName" placeholder="Usuario" required>
+      </div>
+      <div class="form-field d-flex align-items-center">
+        <span class="fas fa-key"></span>
+        <input type="password" class="form-control" autofocus name="password" id="pwd" placeholder="Contraseña" required>
+      </div>
+
+      <div class="form-check text-muted">
+
+      </div>
+
+      <button type="submit" class="login btn mt-3">Entrar</button>
+    
+    </form>
+    <div class="text-center fs-6"> <a href="#" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="bottom" data-bs-content="Podés ingresar anónimamente. Usuario: coder, Pass: house" data-bs-trigger="focus">Olvidaste la contraseña?</a> o <a href="#" data-bs-toggle="modal"
+        data-bs-target="#createAccount">Crear cuenta</a> </div>
+  </div>
+
+  <!-- CREATE ACCOUNT MODAL -->
+
+  <div class="modal fade" id="createAccount" tabindex="-1" aria-labelledby="createAccountLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-light">
+          <h5 class="modal-title " id="createAccountLabel">Nueva cuenta</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="createAccountForm">
+            <div class="mb-3">
+              <label for="userInput" class="form-label">Usuario</label>
+              <input type="text" class="form-control" id="userInput" minlength="3" required>
+            </div>
+            <div class="mb-3">
+              <label for="userPassword" class="form-label">Contraseña</label>
+              <input type="password" class="form-control" id="userPassword" minlength="6" required>
+            </div>
+            <div class="mt-3 pt-3 d-flex justify-content-end">
+              <button type="submit" class="btn btn-primary" aria-label="Close">Crear</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+  </script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script type="module" src="./js/login.js"></script>
+
+</body>
+
+</html>
