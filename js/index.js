@@ -53,42 +53,46 @@ $logout.onclick = () => {
 
 const renderCards = (items) => {
     const $cardContainer = document.querySelector('#cardContainer');
-
-    items.forEach(({id, img, name, price}) => {
-        
-        $cardContainer.innerHTML += `
-        <div class="col-12 col-md-6 col-xl-4">
-            <div class="card shadow">
-              <img src="${img}" height="300" width="350" class="card-img-top" alt="product_image" />
-              <div class="card-body">
-                <hr>
-                <h4 class="card-title">${name}</h4>
-                <h5 class="card-subtitle mb-2 text-muted">$${price}</h5>
-                <a class="btn btn-outline-secondary w-75 addToCart" data-id="${id}">Añadir al carrito</a>
-              </div>
-            </div>
-        </div>
-        `; 
-    });
-
-    const $addToCartBtns = document.querySelectorAll('.addToCart');
     
-    $addToCartBtns.forEach(btn => btn.addEventListener('click', () => {
-        const getItem = id => items.find(el => el.id == id);
-        cart.addItem( getItem(btn.getAttribute('data-id')));
+    setTimeout(() => {
+        $cardContainer.innerHTML = '';
 
-        refreshCartDisplay();
-        
-        Toastify({
-            text: "Producto añadido al carrito",
-            duration: 3000,
-            className: "info",
-            stopOnFocus: false,
-            position: "right",
-            gravity: "bottom",
-            style: {
-                background: "linear-gradient(to right, #00b09b, #96c93d)",
-            }
-        }).showToast();
-    }));
+        items.forEach(({id, img, name, price}) => {
+
+            $cardContainer.innerHTML += `
+            <div class="col-12 col-md-6 col-xl-4">
+                <div class="card shadow">
+                  <img src="${img}" height="300" width="350" class="card-img-top" alt="product_image" />
+                  <div class="card-body">
+                    <hr>
+                    <h4 class="card-title">${name}</h4>
+                    <h5 class="card-subtitle mb-2 text-muted">$${price}</h5>
+                    <a class="btn btn-outline-secondary w-75 addToCart" data-id="${id}">Añadir al carrito</a>
+                  </div>
+                </div>
+            </div>
+            `; 
+        });
+
+        const $addToCartBtns = document.querySelectorAll('.addToCart');
+
+        $addToCartBtns.forEach(btn => btn.addEventListener('click', () => {
+            const getItem = id => items.find(el => el.id == id);
+            cart.addItem( getItem(btn.getAttribute('data-id')));
+
+            refreshCartDisplay();
+
+            Toastify({
+                text: "Producto añadido al carrito",
+                duration: 3000,
+                className: "info",
+                stopOnFocus: false,
+                position: "right",
+                gravity: "bottom",
+                style: {
+                    background: "linear-gradient(to right, #00b09b, #96c93d)",
+                }
+            }).showToast();
+        }));
+    }, 1500);
 };
