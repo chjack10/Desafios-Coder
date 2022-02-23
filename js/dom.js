@@ -1,38 +1,8 @@
-import { getItem } from './Item.js';
 import Cart from './Cart.js';
 
 // "$variable_name" means: a DOM element.
 
-const cart = new Cart();
-
-const domInitialize = () => {
-    const $toastTriggers = document.querySelectorAll('.toastTrigger');
-    
-    $toastTriggers.forEach( (el, id) => {
-        
-        el.setAttribute('data-id', id + 1);
-
-        el.addEventListener('click', () => {            
-            cart.addItem(getItem( el.getAttribute('data-id') ));
-            refreshCartDisplay();
-
-            Toastify({
-                text: "Producto añadido al carrito",
-                duration: 3000,
-                className: "info",
-                stopOnFocus: false,
-                position: "center",
-                gravity: "bottom",
-                style: {
-                    background: "linear-gradient(to right, #00b09b, #96c93d)",
-                }
-                }).showToast();
-
-        });
-    });
-
-    refreshCartDisplay();
-}
+export const cart = new Cart();
 
 const addCartEventListeners = () => {
     const $removeBtn = document.querySelectorAll('.removeItem');
@@ -108,4 +78,4 @@ const refreshCartDisplay = () => {
     }
 };
 
-export default domInitialize;
+export default refreshCartDisplay;

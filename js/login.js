@@ -1,5 +1,9 @@
 import User from './User.js';
 
+if ( JSON.parse(localStorage.getItem('user')) ) {
+  location.href = './index.html';
+}
+
 // https://getbootstrap.com/docs/5.1/components/popovers/
 
 const popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))

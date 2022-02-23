@@ -1,5 +1,4 @@
 export default class Cart {
-  
   constructor() {
     this.items = JSON.parse(localStorage.getItem('cart')) || [];
   }
@@ -11,7 +10,7 @@ export default class Cart {
       this.items.push(item);
 
     } else {
-      this.items[itemIndex].quantity += item.quantity;
+      this.items[itemIndex].quantity++;
     }
     
     localStorage.setItem('cart', JSON.stringify(this.items));
@@ -39,11 +38,13 @@ export default class Cart {
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Si',
+      cancelButtonText: 'No',
     }).then((result) => {
       if (result.isConfirmed) {
         localStorage.removeItem('cart');
         this.items = [];
         refreshCartDisplay();
+
       }
     });
   }

@@ -1,6 +1,10 @@
 import Cart from './Cart.js';
 
+if ( !JSON.parse(localStorage.getItem('cart')) ) {
+    location.href = './login.html';
+}
 // CODE COPIED FROM BOOTSTRAP 5 DOCS ==> https://getbootstrap.com/docs/5.1/forms/validation/
+// SWAL ADDED
 
 (function () {
     'use strict'
@@ -54,8 +58,6 @@ import Cart from './Cart.js';
         })
 })();
 
-// *** OWN CODE ***
- 
 // Load cart DOM
 
 ( () => {
@@ -111,38 +113,5 @@ import Cart from './Cart.js';
     </li>
 
     `);
-
-
-
-
-    // $paymentForm.addEventListener('submit', (e) => {
-    //     e.preventDefault();
-
-    //     Swal.fire({
-    //         title: 'Procesando el pago...',
-    //         timer: 2000,
-    //         timerProgressBar: true,
-    //         didOpen: () => {
-    //           Swal.showLoading()
-    //         },
-    //         willClose: () => {
-    //           clearInterval(timerInterval)
-    //         }
-    //       }).then((result) => {
-    //         if (result.dismiss === Swal.DismissReason.timer) {
-    //           Swal.fire({
-    //             icon: 'success',
-    //             title: 'El pago fué realizado correctamente.',
-    //             text: 'Que lo disfrutes!!!',
-    //             showConfirmButton: false,
-    //             timer: 3500
-    //             }).then( () => {
-    //                 // localStorage.removeItem('cart');
-    //                 // location.href = 'index.html';
-    //             })
-    //         }
-    //       });
-
-    // });
 
 }) (); // invoke immediately

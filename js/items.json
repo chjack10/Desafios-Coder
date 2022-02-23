@@ -1,0 +1,44 @@
+[
+    {
+       "id":1,
+       "name":"Café",
+       "price":10.13,
+       "img":"./img/items/cafe.png",
+       "quantity":1
+    },
+    {
+       "id":2,
+       "name":"Tostados j/q",
+       "price":20.3,
+       "img":"./img/items/tostados.png",
+       "quantity":1
+    },
+    {
+       "id":3,
+       "name":"Coca-cola 500ml",
+       "price":8.53,
+       "img":"./img/items/coca-cola.png",
+       "quantity":1
+    },
+    {
+       "id":4,
+       "name":"Barra de cereal",
+       "price":5.78,
+       "img":"./img/items/barra-cereal.png",
+       "quantity":1
+    },
+    {
+       "id":5,
+       "name":"Sanguche de milanesa",
+       "price":32.87,
+       "img":"./img/items/milanesa.png",
+       "quantity":1
+    },
+    {
+       "id":6,
+       "name":"Yogurt bebible",
+       "price":14.1,
+       "img":"./img/items/yogurt.png",
+       "quantity":1
+    }
+]
