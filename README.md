@@ -1,6 +1,6 @@
-# PREENTREGA - EXPIRA EL JUEVES 17/02/2022 23:59HS
+# DESAFÍO - EXPIRA EL JUEVES 03/03/2022 23:59HS
 
-## Segunda Entrega del Proyecto Final
+## Fetch en tu proyecto
 
 ### Simulador de carrito interactivo - Buffet
 

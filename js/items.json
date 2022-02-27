@@ -40,5 +40,89 @@
        "price":14.1,
        "img":"./img/items/yogurt.png",
        "quantity":1
-    }
+    },
+    {
+      "id":7,
+      "name":"Papas fritas",
+      "price":9.16,
+      "img":"./img/items/papas-fritas.png",
+      "quantity":1
+   },
+    {
+      "id":8,
+      "name":"Palitos salados",
+      "price":3.78,
+      "img":"./img/items/palitos-salados.png",
+      "quantity":1
+   },
+   {
+      "id":9,
+      "name":"Gatorade 500ml",
+      "price":20.3,
+      "img":"./img/items/gatorade.png",
+      "quantity":1
+   },
+   {
+      "id":10,
+      "name":"Alfajor negro",
+      "price":7.53,
+      "img":"./img/items/alfajor-negro.png",
+      "quantity":1
+   },
+   {
+      "id":11,
+      "name":"Alfajor blanco",
+      "price":7.53,
+      "img":"./img/items/alfajor-blanco.png",
+      "quantity":1
+   },
+   {
+      "id":12,
+      "name":"Alfajor triple",
+      "price":10.50,
+      "img":"./img/items/alfajor-triple.png",
+      "quantity":1
+   },
+   {
+      "id":13,
+      "name":"Té negro",
+      "price":4.23,
+      "img":"./img/items/te.png",
+      "quantity":1
+   },
+   {
+      "id":14,
+      "name":"Mate cocido",
+      "price":4.23,
+      "img":"./img/items/mate-cocido.png",
+      "quantity":1
+   },
+   {
+      "id":15,
+      "name":"Chocolatada 250 ml",
+      "price":8.97,
+      "img":"./img/items/chocolatada.png",
+      "quantity":1
+   },
+   {
+      "id":16,
+      "name":"Malboro",
+      "price":17.74,
+      "img":"./img/items/malboro.png",
+      "quantity":1
+   },
+   {
+      "id":17,
+      "name":"Camel",
+      "price":15.78,
+      "img":"./img/items/camel.png",
+      "quantity":1
+   },
+   {
+      "id":18,
+      "name":"Agua mineral 500ml",
+      "price":3.25,
+      "img":"./img/items/agua.png",
+      "quantity":1
+   }
 ]

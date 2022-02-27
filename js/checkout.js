@@ -31,7 +31,7 @@ if ( !JSON.parse(localStorage.getItem('cart')) ) {
                 timer: 3500
                 }).then( () => {
                     localStorage.removeItem('cart');
-                    location.href = 'index.html';
+                    location.href = '../index.html';
                 })
             }
           });
@@ -86,7 +86,7 @@ if ( !JSON.parse(localStorage.getItem('cart')) ) {
 
         $itemList.innerHTML += (`
         <li class="list-group-item d-flex align-items-center">
-            <img class="col-2" src="${img}" height="50" width="50">
+            <img class="col-2" src="../${img}" height="50" width="50">
             <h6 class="my-0 col-6">${name}</h6>
             <span class="text-muted col-2">x${quantity} u</span>
             <span class="col-2 text-end">$${(quantity * price).toFixed(2)}</span>

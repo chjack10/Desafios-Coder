@@ -1,19 +1,19 @@
-import {cart} from './dom.js';
-import refreshCartDisplay from './dom.js';
+import {cart} from './cartDom.js';
+import refreshCartDisplay from './cartDom.js';
 
 // check whether user's not logged in.
 
 if ( !JSON.parse(localStorage.getItem('user')) ) {
-    location.href = './login.html';
+    location.href = './pages/login.html';
 }
 
 window.addEventListener('DOMContentLoaded', () => {
     refreshCartDisplay();
     try {
-        const url = 'https://gist.githubusercontent.com/chjack10/805b49d8f6ed3f5b7d915c481c3f0d18/raw/9335a991aba9bf79e2e6efec6817867003b3b9c3/items.json';
+        const url = 'https://gist.githubusercontent.com/chjack10/805b49d8f6ed3f5b7d915c481c3f0d18/raw/1b24526dfcad580bcc9d9b5f1743dd6119355396/items.json';
         fetch(url)
         .then(res => res.json())
-        .then(renderCards);
+        .then(paginate);
 
     } catch (err) {
         console.error(err);
@@ -45,54 +45,82 @@ $logout.onclick = () => {
         cancelButtonText: 'No',
       }).then((result) => {
         if (result.isConfirmed) {
-            localStorage.clear();
-            location.href = './login.html';
+            localStorage.removeItem('user');
+            localStorage.removeItem('cart');
+            location.href = './pages/login.html';
         }
       })
 };
 
+// Pagination
+
+const paginate = items => {
+    renderCards(items.slice(0,6)); //At start
+    
+    const $pagesbtns = document.querySelectorAll('.page-link');
+
+    $pagesbtns.forEach(btn => btn.addEventListener('click', e => {
+        e.preventDefault();    
+        
+        const $pageNumbers = document.querySelectorAll('.page-item');
+        //reset
+        for (const page of $pageNumbers) {
+            page.className = 'page-item';
+        }  
+
+        //set active
+        e.target.parentNode.className += ' active';
+
+        //render cards
+        if (e.target.innerHTML == 1) {
+            renderCards(items.slice(0,6));
+        } else if (e.target.innerHTML == 2) {
+            renderCards(items.slice(6,12));
+        } else {
+            renderCards(items.slice(12,18));
+        }    
+    }));
+
+};
+
+
+
 const renderCards = (items) => {
     const $cardContainer = document.querySelector('#cardContainer');
-    
-    setTimeout(() => {
-        $cardContainer.innerHTML = '';
 
-        items.forEach(({id, img, name, price}) => {
-
-            $cardContainer.innerHTML += `
-            <div class="col-12 col-md-6 col-xl-4">
-                <div class="card shadow">
-                  <img src="${img}" height="300" width="350" class="card-img-top" alt="product_image" />
-                  <div class="card-body">
-                    <hr>
-                    <h4 class="card-title">${name}</h4>
-                    <h5 class="card-subtitle mb-2 text-muted">$${price}</h5>
-                    <a class="btn btn-outline-secondary w-75 addToCart" data-id="${id}">Añadir al carrito</a>
-                  </div>
-                </div>
+    $cardContainer.innerHTML = '';
+    items.forEach(({id, img, name, price}) => {
+        $cardContainer.innerHTML += `
+        <div class="col-12 col-md-6 col-xl-4">
+            <div class="card shadow">
+              <img src="${img}" height="300" width="350" class="card-img-top" alt="product_image" />
+              <div class="card-body">
+                <hr>
+                <h4 class="card-title">${name}</h4>
+                <h5 class="card-subtitle mb-2 text-muted">$${price}</h5>
+                <a class="btn btn-outline-secondary w-75 addToCart" data-id="${id}">Añadir al carrito</a>
+              </div>
             </div>
-            `; 
-        });
+        </div>
+        `; 
+    });
 
-        const $addToCartBtns = document.querySelectorAll('.addToCart');
-
-        $addToCartBtns.forEach(btn => btn.addEventListener('click', () => {
-            const getItem = id => items.find(el => el.id == id);
-            cart.addItem( getItem(btn.getAttribute('data-id')));
-
-            refreshCartDisplay();
-
-            Toastify({
-                text: "Producto añadido al carrito",
-                duration: 3000,
-                className: "info",
-                stopOnFocus: false,
-                position: "right",
-                gravity: "bottom",
-                style: {
-                    background: "linear-gradient(to right, #00b09b, #96c93d)",
-                }
-            }).showToast();
-        }));
-    }, 1500);
+    const $addToCartBtns = document.querySelectorAll('.addToCart');
+    $addToCartBtns.forEach(btn => btn.addEventListener('click', () => {
+        const getItem = id => items.find(el => el.id == id);
+        cart.addItem( getItem(btn.getAttribute('data-id')));
+        refreshCartDisplay();
+        Toastify({
+            text: "Producto añadido al carrito",
+            duration: 3000,
+            className: "info",
+            stopOnFocus: false,
+            position: "right",
+            gravity: "bottom",
+            style: {
+                background: "linear-gradient(to right, #00b09b, #96c93d)",
+            }
+        }).showToast();
+    }));
+    
 };
