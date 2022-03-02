@@ -83,8 +83,6 @@ const paginate = items => {
 
 };
 
-
-
 const renderCards = (items) => {
     const $cardContainer = document.querySelector('#cardContainer');
 

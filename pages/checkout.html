@@ -34,7 +34,7 @@
                     <div class="row g-3">
                         <div class="col-sm-6">
                             <label for="firstName" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" placeholder="" value="" required>
+                            <input type="text" class="form-control" placeholder="" value="" required pattern="[A-Za-z\s]{2,30}">
                             <div class="invalid-feedback">
                                 Ingresá tu nombre.
                             </div>
@@ -42,7 +42,7 @@
 
                         <div class="col-sm-6">
                             <label for="lastName" class="form-label">Apellido</label>
-                            <input type="text" class="form-control" placeholder="" value="" required>
+                            <input type="text" class="form-control" placeholder="" value="" required pattern="[A-Za-z\s]+{2,30}">
                             <div class="invalid-feedback">
                                 Ingresá tu apellido.
                             </div>
@@ -52,15 +52,15 @@
                         <div class="col-sm-6">
                             <label for="email" class="form-label">E-mail</label>
                             <input type="email" class="form-control" id="email" placeholder="email@ejemplo.com"
-                                required>
+                                required pattern="^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-Z0-9]{2,4}$">
                             <div class="invalid-feedback">
                                 Ingresá un email válido.
                             </div>
                         </div>
 
                         <div class="col-sm-6">
-                            <label for="address" class="form-label">Número de teléfono</label>
-                            <input type="number" class="form-control" id="address" placeholder="1533575748" required>
+                            <label for="phone" class="form-label">Número de teléfono</label>
+                            <input type="text" class="form-control" id="phone" placeholder="1533575748" required  pattern="([0-9]{8}|[0-9]{10})">
                             <div class="invalid-feedback">
                                 Ingresá tu número de teléfono.
                             </div>
@@ -68,7 +68,7 @@
 
                         <div class="col-sm-9">
                             <label for="address" class="form-label">Domicilio</label>
-                            <input type="text" class="form-control" placeholder="Av. corrientes 3000" required>
+                            <input type="text" class="form-control" placeholder="Av. corrientes 3000" required pattern="([a-zA-Z\s]{1,10})+([0-9]{1,6})">
                             <div class="invalid-feedback">
                                 Ingresá tu domicilio.
                             </div>
@@ -76,7 +76,7 @@
 
                         <div class="col-md-3">
                             <label for="zip" class="form-label">Código postal</label>
-                            <input type="text" class="form-control" placeholder="B18145" required>
+                            <input type="text" class="form-control" placeholder="B18145" required pattern="([a-zA-Z\s]{1})+([0-9]{4})">
                             <div class="invalid-feedback">
                                 Ingresá el código postal.
                             </div>
@@ -89,12 +89,11 @@
 
                     <div class="row">
                         <div class="col-sm-3">
-                            <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked=""
-                                required>
+                            <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked="" required>
                             <label class="form-check-label" for="credit">Tarjeta de crédito</label>
                         </div>
                         <div class="col-sm-3">
-                            <input id="debit" name="paymentMethod" type="radio" class="form-check-input">
+                            <input id="debit" name="paymentMethod" type="radio" class="form-check-input" >
                             <label class="form-check-label" for="debit">Tarjeta de débito</label>
                         </div>
                         <div class="col-sm-3">
@@ -112,7 +111,7 @@
                     <div class="row gy-3">
                         <div class="col-md-6">
                             <label for="cc-name" class="form-label">Nombre en tarjeta</label>
-                            <input type="text" class="form-control" id="cc-name" placeholder="" required>
+                            <input type="text" class="form-control" id="cc-name" placeholder="" required pattern="[A-Za-z\s]{4,40}">
                             <small class="text-muted">Ingresar el nombre completo tal cual se muestra en la
                                 tarjeta</small>
                             <div class="invalid-feedback">
@@ -122,8 +121,7 @@
 
                         <div class="col-md-6">
                             <label for="cc-number" class="form-label">Número de tarjeta</label>
-                            <input type="number" class="form-control" id="cc-number" placeholder="0000 0000 0000 0000"
-                                required>
+                            <input type="text" class="form-control" id="cc-number" placeholder="0000 0000 0000 0000" required pattern="[0-9]{16}|(([0-9]{4}\s){3}[0-9]{4})">
                             <div class="invalid-feedback">
                                 Número de tarjeta requerido.
                             </div>
@@ -139,7 +137,7 @@
 
                             <div class="col-md-2">
                                 <label for="cc-cvv" class="form-label">CVV</label>
-                                <input type="password" class="form-control" id="cc-cvv" placeholder="000" required>
+                                <input type="password" class="form-control" id="cc-cvv" placeholder="000" required required pattern="[0-9]{3}">
                                 <div class="invalid-feedback">
                                     Código de seguridad requerido.
                                 </div>
@@ -170,9 +168,9 @@
 
     <footer class="text-center mt-5" style="background-color: #f1f1f1">
         <div class="p-3" style="background-color: rgba(0, 0, 0, 0.2)">
-            © 2022 Github:
-            <a class="text-dark" href="https://github.com/chjack10" style="text-decoration: none">chjack10</a>
-        </div>
+            © 2022:
+            <a class="text-dark" href="https://github.com/chjack10" style="text-decoration: none"> <i class="bi bi-github mx-1 fs-5"></i>chjack10</a>
+          </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

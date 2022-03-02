@@ -8,8 +8,13 @@
 }
 
 body {
-    background: #ecf0f3;
-    /* #ecf0f3; */
+    /* background: #ecf0f3; */
+    background-image: url("../img/login-background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.92;
+    height: 100vh;
+    overflow: hidden;
 }
 
 .wrapper {
